@@ -17,6 +17,10 @@ public abstract class VirtualPet {
 
 	public abstract String fullPetInfo();
 
+	public void playWithPet() {
+
+	}
+
 	public abstract void tick();
 
 	public String getName() {

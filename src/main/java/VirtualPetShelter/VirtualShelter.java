@@ -195,4 +195,9 @@ public class VirtualShelter {
 		return 0;
 	}
 
+	public void playWithPet(String name) {
+		VirtualPet pet = findPet(name);
+		pet.playWithPet();
+	}
+
 }

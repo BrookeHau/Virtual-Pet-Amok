@@ -51,12 +51,23 @@ public class VirtualPetShelterApp {
 			}
 
 			if (optionEntered.equals("3")) {
-				myPets.playAllPets();
-				System.out.println("Thank you for playing with the pets!");
-				System.out.println("Here's their new level information:");
+				System.out.println("Which pet would you like to play with, or all?");
 				for (VirtualPet pet : myPets.showPets()) {
 					System.out.println("- " + pet);
 				}
+				String petPlay = input.nextLine();
+				if (petPlay.equalsIgnoreCase("all")) {
+					myPets.playAllPets();
+					System.out.println("Thanks for playing with all the pets! Here's their current status: ");
+					for (VirtualPet pet : myPets.showPets()) {
+						System.out.println(" - " + pet);
+					}
+				} else {
+					myPets.playWithPet(petPlay);
+					System.out.println("Thanks for playing with " + petPlay + "!\nHere's their current status: "
+							+ myPets.getFullPetInfo(petPlay));
+				}
+
 			}
 			if (optionEntered.equals("4")) {
 				myPets.cleanLitterBox();

@@ -141,4 +141,13 @@ public class VirtualShelterTest {
 		int check = shelterUnderTest.checkLitter();
 	}
 
+	@Test
+	public void playWithOnePet() {
+		shelterUnderTest.admitPet(testPet);
+		shelterUnderTest.playWithPet("Henry");
+		int check = shelterUnderTest.getBoredom();
+		assertThat(check, is(2));
+
+	}
+
 }
