@@ -32,7 +32,8 @@ public class Dog extends OrganicPet implements Walkable {
 
 	public String toString() {
 		return petName + " the " + description + " has hunger of " + petHunger + ", thirst of " + petThirst
-				+ ", boredom of " + petBoredom + ", and bathroom of " + petBathroom + ", a need for walk of " + dogWalk + " and a cage soil level of " + cageSoilLevel + ".";
+				+ ", boredom of " + petBoredom + ", and bathroom of " + petBathroom + ", a need for walk of " + dogWalk
+				+ " and a cage soil level of " + cageSoilLevel + ".";
 	}
 
 	@Override
@@ -72,5 +73,6 @@ public class Dog extends OrganicPet implements Walkable {
 	public void cleanCage() {
 		cageSoilLevel = 0;
 	}
+
 
 }

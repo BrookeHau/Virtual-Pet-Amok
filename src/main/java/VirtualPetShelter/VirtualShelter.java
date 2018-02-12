@@ -31,44 +31,8 @@ public class VirtualShelter {
 		pets.remove(petName);
 	}
 
-	public void feedSpecificPet(String petName) {
-		pets.get(petName).feedPet();
-	}
-
-	public int getPetHunger(String pet) {
-		return pets.get(pet).getHunger();
-	}
-
-	public void waterSpecificPet(String pet) {
-		pets.get(pet).waterPet();
-	}
-
-	public int getPetThirst(String pet) {
-		return pets.get(pet).getThirst();
-	}
-
-	public void playSpecificPet(String pet) {
-		pets.get(pet).playWithPet();
-	}
-
-	public int getPetBoredom(String pet) {
-		return pets.get(pet).getBoredom();
-	}
-
-	public void takeSpecificPettoBathroom(String pet) {
-		pets.get(pet).takePetToBathroom();
-	}
-
-	public int getPetBathroom(String pet) {
-		return pets.get(pet).getBathroom();
-	}
-
 	public String getFullPetInfo(String testPet) {
 		return pets.get(testPet).toString();
-	}
-
-	public String getNameDesc(String pet) {
-		return pets.get(pet).showNameDesc();
 	}
 
 	public Collection<VirtualPet> showPets() {
@@ -81,13 +45,25 @@ public class VirtualShelter {
 
 	public void feedAllPets() {
 		for (VirtualPet pet : pets.values()) {
-			pet.feedPet();
+			if (pet instanceof OrganicPet) {
+				((OrganicPet) pet).feedPet();
+			}
+		}
+	}
+
+	public void playAllPets() {
+		for (VirtualPet pet : pets.values()) {
+			if (pet instanceof OrganicPet) {
+				((OrganicPet) pet).playWithPet();
+			}
 		}
 	}
 
 	public void waterAllPets() {
 		for (VirtualPet pet : pets.values()) {
-			pet.waterPet();
+			if (pet instanceof OrganicPet) {
+				((OrganicPet) pet).waterPet();
+			}
 		}
 	}
 
@@ -96,6 +72,127 @@ public class VirtualShelter {
 			pet.tick();
 		}
 
+	}
+
+	public void walkAllDogs() {
+		for (VirtualPet pet : pets.values()) {
+			if (pet instanceof Walkable) {
+				((Walkable) pet).walkdog();
+			}
+		}
+	}
+
+	public void oilAllRoboticPets() {
+		for (VirtualPet pet : pets.values()) {
+			if (pet instanceof Robot) {
+				((Robot) pet).oil();
+			}
+		}
+	}
+
+	public void chargeBatteries() {
+		for (VirtualPet pet : pets.values()) {
+			if (pet instanceof Robot) {
+				((Robot) pet).charge();
+			}
+		}
+	}
+
+	public void cleanDogCages() {
+		for (VirtualPet pet : pets.values()) {
+			if (pet instanceof Dog) {
+				((Dog) pet).cleanCage();
+			}
+		}
+	}
+
+	public void cleanLitterBox() {
+		for (VirtualPet pet : pets.values()) {
+			if (pet instanceof Cat) {
+				((Cat) pet).cleanLitter();
+			}
+		}
+	}
+
+	public int getWalkLevel() {
+		for (VirtualPet pet : pets.values()) {
+			if (pet instanceof Walkable) {
+				return ((Walkable) pet).getWalkLevel();
+			}
+		}
+		return 0;
+	}
+
+	public int getHunger() {
+		for (VirtualPet pet : pets.values()) {
+			if (pet instanceof OrganicPet) {
+				return ((OrganicPet) pet).getHunger();
+			}
+		}
+		return 0;
+	}
+
+	public int getThirst() {
+		for (VirtualPet pet : pets.values()) {
+			if (pet instanceof OrganicPet) {
+				return ((OrganicPet) pet).getThirst();
+			}
+		}
+		return 0;
+	}
+
+	public int getBoredom() {
+		for (VirtualPet pet : pets.values()) {
+			if (pet instanceof OrganicPet) {
+				return ((OrganicPet) pet).getBoredom();
+			}
+		}
+		return 0;
+	}
+
+	public int getBathroom() {
+		for (VirtualPet pet : pets.values()) {
+			if (pet instanceof OrganicPet) {
+				return ((OrganicPet) pet).getBathroom();
+			}
+		}
+		return 0;
+	}
+
+	public int getOilLevel() {
+		for (VirtualPet pet : pets.values()) {
+			if (pet instanceof Robot) {
+				return ((Robot) pet).checkOil();
+			}
+		}
+		return 0;
+	}
+
+	public int getBatteryLevel() {
+		for (VirtualPet pet : pets.values()) {
+			if (pet instanceof Robot) {
+				return ((Robot) pet).checkBattery();
+			}
+		}
+		return 0;
+	}
+
+	public int getCageSoilLevel() {
+		for (VirtualPet pet : pets.values()) {
+			if (pet instanceof Dog) {
+				return ((Dog) pet).getCageSoilLevel();
+			}
+		}
+		return 0;
+	}
+
+	public int checkLitter() {
+		for (VirtualPet pet : pets.values()) {
+			if (pet instanceof Cat) {
+				return ((Cat) pet).checkLitter();
+			}
+		}
+		return 0;
 	}
 
 }

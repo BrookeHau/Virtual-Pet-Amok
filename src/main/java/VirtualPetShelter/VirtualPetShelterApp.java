@@ -9,7 +9,8 @@ public class VirtualPetShelterApp {
 		VirtualShelter myPets = new VirtualShelter();
 		String optionEntered;
 
-		System.out.println("Thank you for volunteering at Brooke's pet shelter!");
+		System.out.println(
+				"Thank you for volunteering at Brooke's pet shelter!  We have lots of pets, ranging from RoboPets to Organic pets");
 
 		do {
 			System.out.println("This is the status of your pets:");
@@ -19,73 +20,51 @@ public class VirtualPetShelterApp {
 			}
 			System.out.println();
 			System.out.println("What would you like to do next?");
-			System.out.println("Press 1 to feed a pet");
-			System.out.println("Press 2 to water a pet");
-			System.out.println("Press 3 to play with a pet");
-			System.out.println("Press 4 to take the pet to the bathroom");
+			System.out.println("Press 1 to feed all organic pets");
+			System.out.println("Press 2 to water all organic pets");
+			System.out.println("Press 3 to play with all organic pets");
+			System.out.println("Press 4 to clean the cat litterbox");
 			System.out.println("Press 5 to adopt a pet");
 			System.out.println("Press 6 to admit a pet");
+			System.out.println("Press 7 to clean the dog cages");
+			System.out.println("Press 8 to oil the robopets");
+			System.out.println("Press 9 to charge robopets batteries");
 			System.out.println("Press 0 to quit");
 			optionEntered = input.nextLine();
 
 			if (optionEntered.equals("1")) {
-				System.out.println("Which pet would you like to feed? Or type 'all' to feed all pets");
+				myPets.feedAllPets();
+				System.out.println("Thank you for feeding the organic pets!");
+				System.out.println("Here's their new level information:");
 				for (VirtualPet pet : myPets.showPets()) {
 					System.out.println("- " + pet);
 				}
-				String petFeed = input.nextLine();
-				if (petFeed.equalsIgnoreCase("all")) {
-					myPets.feedAllPets();
-					System.out.println("Thanks for feeding all the pets! Here's their current status: ");
-					for (VirtualPet pet : myPets.showPets()) {
-						System.out.println(" - " + pet);
-					}
-
-				} else {
-					myPets.feedSpecificPet(petFeed);
-					System.out.println("Thanks for feeding " + petFeed + "!\nHere's their current status: "
-							+ myPets.getFullPetInfo(petFeed));
-				}
-
 			}
+
 			if (optionEntered.equals("2")) {
-				System.out.println("Which pet would you like to water? Or type 'all' to water all pets");
+				myPets.waterAllPets();
+				System.out.println("Thank you for watering the organic pets!");
+				System.out.println("Here's their new level information:");
 				for (VirtualPet pet : myPets.showPets()) {
 					System.out.println("- " + pet);
 				}
-				String petWater = input.nextLine();
-				if (petWater.equalsIgnoreCase("all")) {
-					myPets.waterAllPets();
-					System.out.println("Thanks for watering all the pets! Here's their current status: ");
-					for (VirtualPet pet : myPets.showPets()) {
-						System.out.println(" - " + pet);
-					}
-				} else {
-					myPets.waterSpecificPet(petWater);
-					System.out.println("Thanks for watering " + petWater + "!\nHere's their current status: "
-							+ myPets.getFullPetInfo(petWater));
-				}
-
 			}
+
 			if (optionEntered.equals("3")) {
-				System.out.println("Which pet would you like to play with?");
+				myPets.playAllPets();
+				System.out.println("Thank you for playing with the pets!");
+				System.out.println("Here's their new level information:");
 				for (VirtualPet pet : myPets.showPets()) {
 					System.out.println("- " + pet);
 				}
-				String playPet = input.nextLine();
-				myPets.playSpecificPet(playPet);
-				System.out.println("Thanks for playing with " + playPet + "!\nHere's their current status: "
-						+ myPets.getFullPetInfo(playPet));
 			}
 			if (optionEntered.equals("4")) {
+				myPets.cleanLitterBox();
+				System.out.println("Thank you for cleaning the cat litterboxes!");
 				System.out.println("Which pet would you like to take to the bathroom?");
 				for (VirtualPet pet : myPets.showPets()) {
 					System.out.println("- " + pet);
 				}
-				String petBathroom = input.nextLine();
-				myPets.takeSpecificPettoBathroom(petBathroom);
-				System.out.println("Thanks for taking  " + petBathroom
-						+ " to the bathroom!\nHere's their current status: " + myPets.getFullPetInfo(petBathroom));
 			}
 			if (optionEntered.equals("5")) {
 				System.out.println("Which pet would you like to adopt?");
@@ -93,17 +72,63 @@ public class VirtualPetShelterApp {
 					System.out.println("- " + pet);
 				}
 				String adoptPet = input.nextLine();
-				System.out.println("Thank you for adopting " + myPets.getNameDesc(adoptPet));
+				System.out.println("Thank you for adopting " + adoptPet);
 				myPets.adoptPet(adoptPet);
 			}
 			if (optionEntered.equals("6")) {
 				System.out.println("Enter the name of the pet you'd like to admit:");
 				String admitName = input.nextLine();
-				System.out.println("Enter the description of the pet:");
-				String admitDesc = input.nextLine();
-				myPets.admitPet(new VirtualPet(admitName, admitDesc));
-				System.out.println("Thank you for admitting " + admitName + "! Here is their current status "
-						+ myPets.getFullPetInfo(admitName));
+				System.out.println("Enter the type of pet you'd like to admit:");
+				System.out.println("1 for Cat");
+				System.out.println("2 for Dog");
+				System.out.println("3 for RoboCat");
+				System.out.println("4 for RoboDog");
+				String newType = input.nextLine();
+				if (newType.equals("1")) {
+					System.out.println("Please enter a description of your pet:");
+					String catDescription = input.nextLine();
+					myPets.admitPet(new Cat(admitName, catDescription));
+				}
+				if (newType.equals("2")) {
+					System.out.println("Please enter a description of your pet:");
+					String dogDescription = input.nextLine();
+					myPets.admitPet(new Dog(admitName, dogDescription));
+				}
+				if (newType.equals("3")) {
+					System.out.println("Please enter a description of your pet:");
+					String rCatDescription = input.nextLine();
+					myPets.admitPet(new RobotCat(admitName, rCatDescription));
+				}
+				if (newType.equals("4")) {
+					System.out.println("Please enter a description of your pet:");
+					String rDogDescription = input.nextLine();
+					myPets.admitPet(new RobotDog(admitName, rDogDescription));
+				}
+				System.out.println("Thank you for admitting " + admitName + "!");
+			}
+			if (optionEntered.equals("7")) {
+				myPets.cleanDogCages();
+				System.out.println("Thank you for cleaning the dog cages!");
+				System.out.println("Here's their new level information:");
+				for (VirtualPet pet : myPets.showPets()) {
+					System.out.println("- " + pet);
+				}
+			}
+			if (optionEntered.equals("8")) {
+				myPets.oilAllRoboticPets();
+				System.out.println("Thank you for oiling the robopets!");
+				System.out.println("Here's their new level information:");
+				for (VirtualPet pet : myPets.showPets()) {
+					System.out.println("- " + pet);
+				}
+			}
+			if (optionEntered.equals("9")) {
+				myPets.chargeBatteries();
+				System.out.println("Thank you for charging the robopets!");
+				System.out.println("Here's their new level information:");
+				for (VirtualPet pet : myPets.showPets()) {
+					System.out.println("- " + pet);
+				}
 			}
 			myPets.calltick();
 		} while (!(optionEntered.equals("0")));

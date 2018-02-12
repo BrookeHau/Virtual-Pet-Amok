@@ -1,6 +1,6 @@
 package VirtualPetShelter;
 
-public abstract class Robot extends VirtualPet{
+public abstract class Robot extends VirtualPet {
 	protected String roboName;
 	protected String roboDescription;
 	protected int oilLevel;

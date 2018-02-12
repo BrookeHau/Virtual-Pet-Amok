@@ -12,6 +12,14 @@ public class RobotDog extends Robot implements Walkable {
 		this.walkLevel = walkLevel;
 	}
 
+	public RobotDog(String roboName, String roboDescription) {
+		this.roboName = roboName;
+		this.roboDescription = roboDescription;
+		this.oilLevel = 2;
+		this.batteryLevel = 3;
+		this.walkLevel = 4;
+	}
+
 	@Override
 	public void walkdog() {
 		walkLevel += 2;
@@ -28,7 +36,7 @@ public class RobotDog extends Robot implements Walkable {
 	}
 
 	public String toString() {
-		return petName + " the " + description + " has an oil level of " + oilLevel + ", battery level of "
+		return roboName + " the " + roboDescription + " has an oil level of " + oilLevel + ", battery level of "
 				+ batteryLevel + ", and walk level of " + walkLevel + ".";
 	}
 

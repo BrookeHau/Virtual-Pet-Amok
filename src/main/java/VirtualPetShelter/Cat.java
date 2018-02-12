@@ -17,6 +17,18 @@ public class Cat extends OrganicPet {
 		this.petBathroom = petBathroom;
 	}
 
+	public Cat(String petName, String description) {
+		this.petName = petName;
+		this.description = description;
+		this.litterSoilLevel = 2;
+		this.petHealth = 3;
+		this.petHappiness = 4;
+		this.petBoredom = 2;
+		this.petHunger = 3;
+		this.petThirst = 5;
+		this.petBathroom = 5;
+	}
+
 	public String toString() {
 		return petName + " the " + description + " has hunger of " + petHunger + ", thirst of " + petThirst
 				+ ", boredom of " + petBoredom + ", and bathroom of " + petBathroom + " and a litterbox soil level of "

@@ -20,6 +20,7 @@ public class VirtualShelterTest {
 	private VirtualPet anotherPet2 = new RobotDog("Woody", "robo", 5, 5, 5);
 
 	@Before
+	public void clearList() {
 		shelterUnderTest.clear();
 	}
 
@@ -27,14 +28,8 @@ public class VirtualShelterTest {
 	public void getFullPetInfo() {
 		shelterUnderTest.admitPet(testPet);
 		String info = shelterUnderTest.getFullPetInfo("Henry");
-		Assert.assertEquals("Henry the dog has hunger of 5, thirst of 5, boredom of 5, and bathroom of 5.", info);
-	}
-
-	@Test
-	public void getPartialPetInfo() {
-		shelterUnderTest.admitPet(testPet);
-		String info = shelterUnderTest.getNameDesc("Henry");
-		Assert.assertEquals("Henry the dog.", info);
+		assertThat(info, is(
+				"Henry the dog has hunger of 5, thirst of 5, boredom of 5, and bathroom of 5, a need for walk of 5 and a cage soil level of 5."));
 	}
 
 	@Test
@@ -70,72 +65,80 @@ public class VirtualShelterTest {
 	}
 
 	@Test
-	public void shouldFeedSpecificPet() {
+	public void shouldWalkAllDogs() {
 		shelterUnderTest.admitPet(testPet);
-		shelterUnderTest.feedSpecificPet("Henry");
-		int hunger = shelterUnderTest.getPetHunger("Henry");
-		Assert.assertEquals(3, hunger);
+		shelterUnderTest.walkAllDogs();
+		int check = shelterUnderTest.getWalkLevel();
+		Assert.assertEquals(3, check);
 	}
 
 	@Test
-	public void shouldWaterSpecificPet() {
+	public void shouldFeedPets() {
 		shelterUnderTest.admitPet(testPet);
-		shelterUnderTest.waterSpecificPet("Henry");
-		int thirst = shelterUnderTest.getPetThirst("Henry");
-		Assert.assertEquals(3, thirst);
-	}
-
-	@Test
-	public void shouldPlaySpecificPet() {
-		shelterUnderTest.admitPet(testPet);
-		shelterUnderTest.playSpecificPet("Henry");
-		int boredom = shelterUnderTest.getPetBoredom("Henry");
-		Assert.assertEquals(2, boredom);
-	}
-
-	@Test
-	public void shouldTakePetToBathroom() {
-		shelterUnderTest.admitPet(testPet);
-		shelterUnderTest.takeSpecificPettoBathroom("Henry");
-		int bathroom = shelterUnderTest.getPetBathroom("Henry");
-		Assert.assertEquals(2, bathroom);
-	}
-
-	@Test
-	public void feedAllPets() {
-		shelterUnderTest.admitPet(testPet);
-		shelterUnderTest.admitPet(anotherPet);
 		shelterUnderTest.feedAllPets();
-		int hunger = shelterUnderTest.getPetHunger("Henry");
-		int thirst = shelterUnderTest.getPetThirst("Woody");
-		Assert.assertEquals(3, hunger);
-		Assert.assertEquals(6, thirst);
+		int check = shelterUnderTest.getHunger();
+		int check2 = shelterUnderTest.getThirst();
+		assertThat(check, is(3));
+		assertThat(check2, is(6));
 	}
 
 	@Test
-	public void waterAllPets() {
+	public void shouldWaterPets() {
 		shelterUnderTest.admitPet(testPet);
-		shelterUnderTest.admitPet(anotherPet);
 		shelterUnderTest.waterAllPets();
-		int hunger = shelterUnderTest.getPetHunger("Henry");
-		int thirst = shelterUnderTest.getPetThirst("Woody");
-		Assert.assertEquals(4, hunger);
-		Assert.assertEquals(3, thirst);
+		int check = shelterUnderTest.getHunger();
+		int check2 = shelterUnderTest.getThirst();
+		assertThat(check, is(4));
+		assertThat(check2, is(3));
+	}
+
+	@Test
+	public void playPet() {
+		shelterUnderTest.admitPet(testPet);
+		shelterUnderTest.playAllPets();
+		int check = shelterUnderTest.getHunger();
+		int check2 = shelterUnderTest.getBoredom();
+		assertThat(check, is(6));
+		assertThat(check2, is(2));
 	}
 
 	@Test
 	public void useTick() {
 		shelterUnderTest.admitPet(testPet);
-		shelterUnderTest.admitPet(anotherPet);
 		shelterUnderTest.calltick();
-		int hunger = shelterUnderTest.getPetHunger("Henry");
-		int bathroom = shelterUnderTest.getPetBathroom("Henry");
-		int thirst = shelterUnderTest.getPetThirst("Woody");
-		int boredom = shelterUnderTest.getPetBoredom("Woody");
-		Assert.assertEquals(9, bathroom);
-		Assert.assertEquals(9, thirst);
-		Assert.assertEquals(3, boredom);
-		Assert.assertEquals(8, hunger);
+		int hunger = shelterUnderTest.getHunger();
+		int bathroom = shelterUnderTest.getBathroom();
+		int thirst = shelterUnderTest.getThirst();
+		int boredom = shelterUnderTest.getBoredom();
+		assertThat(hunger, is(8));
+		assertThat(bathroom, is(9));
+		assertThat(thirst, is(9));
+		assertThat(boredom, is(3));
+	}
+
+	@Test
+	public void useTickForRobot() {
+		shelterUnderTest.admitPet(anotherPet2);
+		shelterUnderTest.calltick();
+		int oil = shelterUnderTest.getOilLevel();
+		int battery = shelterUnderTest.getBatteryLevel();
+		assertThat(oil, is(7));
+		assertThat(battery, is(8));
+	}
+
+	@Test
+	public void cleanCage() {
+		shelterUnderTest.admitPet(testPet);
+		shelterUnderTest.cleanDogCages();
+		int check = shelterUnderTest.getCageSoilLevel();
+		assertThat(check, is(0));
+	}
+
+	@Test
+	public void cleanLitter() {
+		shelterUnderTest.admitPet(anotherPet);
+		shelterUnderTest.cleanLitterBox();
+		int check = shelterUnderTest.checkLitter();
 	}
 
 }

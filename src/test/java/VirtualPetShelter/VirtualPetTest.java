@@ -23,26 +23,25 @@ public class VirtualPetTest {
 		String desc = dog.getPetDescription();
 		assertThat(desc, is("Dog"));
 	}
-	
+
 	@Test
 	public void getInfo() {
 		String check = dog.fullPetInfo();
-		assertThat(check, is("Henry the Dog has hunger of 5, thirst of 5, boredom of 5, and bathroom of 5."));
+		assertThat(check, is(
+				"Henry the Dog has hunger of 5, thirst of 5, boredom of 5, and bathroom of 5, a need for walk of 5 and a cage soil level of 5."));
 	}
-	
+
 	@Test
 	public void getHealth() {
 		String check = dog.getHealth();
 		assertThat(check, is("Feeling groovy"));
 	}
-	
-	@Test 
-	public void getHealth2() {
-		VirtualPet pet = new Dog("Henry", "Dog", 3,2,1,1,7,8,3,8);
-		String check = pet.getHealth();
-		assertThat(check,is("Feeling meh"));
-	}
-	
 
+	@Test
+	public void getHealth2() {
+		VirtualPet pet = new Dog("Henry", "Dog", 3, 2, 1, 1, 7, 8, 3, 8);
+		String check = pet.getHealth();
+		assertThat(check, is("Feeling meh"));
+	}
 
 }
