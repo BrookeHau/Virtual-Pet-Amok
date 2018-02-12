@@ -3,18 +3,18 @@ package VirtualPetShelter;
 public abstract class VirtualPet {
 
 	protected String petName;
-
-	protected int petBoredom;
 	protected String description;
 	protected int petHealth;
+	protected int petHappiness;
 
 	public String getPetName() {
 		return petName;
 	}
+
 	public String getPetDescription() {
-		return description; 
+		return description;
 	}
-	
+
 	public abstract void fullPetInfo();
 
 	public abstract void tick();
@@ -22,5 +22,7 @@ public abstract class VirtualPet {
 	public String getName() {
 		return petName;
 	}
+
+	protected abstract int getHealth();
 
 }

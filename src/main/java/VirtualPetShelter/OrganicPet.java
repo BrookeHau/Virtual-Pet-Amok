@@ -7,28 +7,6 @@ public class OrganicPet extends VirtualPet {
 	protected int petBathroom;
 	protected int petBoredom;
 
-	public OrganicPet(String petName, String description, int petBoredom, int petHunger, int petThirst,
-			int petBathroom) {
-		this.petName = petName;
-		this.description = description;
-		// super(petName, description);
-		this.petHunger = petHunger;
-		this.petThirst = petThirst;
-		this.petBathroom = petBathroom;
-		this.petBoredom = petBoredom;
-	}
-
-	public OrganicPet(String petName, String description) {
-//		super(petName, description);
-		this.petName = petName;
-		this.description = description;
-		this.petHunger = 4;
-		this.petThirst = 5;
-		this.petBathroom = 3;
-		this.petBoredom = 5;
-
-	}
-
 	public void feedPet() {
 		petHunger -= 2;
 		petThirst += 1;
@@ -76,14 +54,14 @@ public class OrganicPet extends VirtualPet {
 		petBathroom += 4;
 	}
 
-	public String toString() {
-		return petName + " the " + description + " has hunger of " + petHunger + ", thirst of " + petThirst
-				+ ", boredom of " + petBoredom + ", and bathroom of " + petBathroom + ".";
+	@Override
+	protected int getHealth() {
+		return 0;
 	}
 
 	@Override
 	public void fullPetInfo() {
-		toString();
+
 	}
 
 }
