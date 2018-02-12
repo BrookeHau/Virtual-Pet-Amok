@@ -15,7 +15,7 @@ public abstract class VirtualPet {
 		return description;
 	}
 
-	public abstract void fullPetInfo();
+	public abstract String fullPetInfo();
 
 	public abstract void tick();
 
@@ -23,6 +23,6 @@ public abstract class VirtualPet {
 		return petName;
 	}
 
-	protected abstract int getHealth();
+	protected abstract String getHealth();
 
 }

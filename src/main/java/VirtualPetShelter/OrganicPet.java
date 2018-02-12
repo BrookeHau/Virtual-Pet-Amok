@@ -1,6 +1,6 @@
 package VirtualPetShelter;
 
-public class OrganicPet extends VirtualPet {
+public abstract class OrganicPet extends VirtualPet {
 
 	protected int petHunger;
 	protected int petThirst;
@@ -43,7 +43,7 @@ public class OrganicPet extends VirtualPet {
 	}
 
 	public void takePetToBathroom() {
-		petBathroom -= 3;
+		petBathroom -= 1;
 	}
 
 	@Override
@@ -53,15 +53,4 @@ public class OrganicPet extends VirtualPet {
 		petBoredom -= 2;
 		petBathroom += 4;
 	}
-
-	@Override
-	protected int getHealth() {
-		return 0;
-	}
-
-	@Override
-	public void fullPetInfo() {
-
-	}
-
 }

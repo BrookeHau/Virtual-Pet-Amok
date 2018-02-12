@@ -76,6 +76,18 @@ public class RoboticTest {
 		int check2 = roboCat.checkOil();
 		assertThat(check, is(10));
 		assertThat(check2, is(7));
+	}
+	@Test 
+	public void getCatHealt() {
+		String check = roboCat.getHealth();
+		assertThat(check, is("Feeling so so"));
 		
+	}
+	
+	@Test
+	public void shouldPrintFullPetInfo() {
+		String printString = robo.fullPetInfo();
+		assertThat(printString, is(
+				"Name the description has an oil level of 3, bettery level of 4, and walk level of 5."));
 	}
 }

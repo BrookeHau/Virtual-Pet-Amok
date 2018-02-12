@@ -8,60 +8,66 @@ import org.junit.Test;
 
 public class DogTest {
 
-	private Dog dog = new Dog("Henry", "Dog", 5, 5, 5, 5, 5, 5, 5, 5);
+	private Dog dog = new Dog("Henry", "Dog", 7, 7, 7, 7, 7, 7, 7, 7);
 
 	@Test
 	public void dogWalk() {
 		dog.walkdog();
 		int check = dog.getWalkLevel();
-		assertThat(check, is(3));
+		assertThat(check, is(5));
 	}
 
 	@Test
-	public void bathroomChange() {
+	public void changesForBathroom() {
 		dog.takePetToBathroom();
-		int check = dog.getBathroom();
-		assertThat(check, is(2));
+		int hunger = dog.getHunger();
+		int bathroom = dog.getBathroom();
+		int thirst = dog.getThirst();
+		int boredom = dog.getBoredom();
+		assertThat(hunger, is(7));
+		assertThat(bathroom, is(6));
+		assertThat(thirst, is(7));
+		assertThat(boredom, is(7));
 	}
-	//
-	// @Test
-	// public void changesForBathroom() {
-	// dog.takePetToBathroom();
-	// int hunger = dog.getHunger();
-	// int bathroom = dog.getBathroom();
-	// int thirst = dog.getThirst();
-	// int boredom = dog.getBoredom();
-	// assertThat(hunger, is(5));
-	// assertThat(bathroom, is(2));
-	// assertThat(thirst, is(5));
-	// assertThat(boredom, is(5));
-	// }
-	//
-//	 @Test
-//	 public void changesForTick() {
-//	 dog.tick();
-//	 int hunger = dog.getHunger();
-//	 int bathroom = dog.getBathroom();
-//	 int thirst = dog.getThirst();
-//	 int boredom = dog.getBoredom();
-//	 Assert.assertEquals(9, bathroom);
-//	 Assert.assertEquals(9, thirst);
-//	 Assert.assertEquals(3, boredom);
-//	 Assert.assertEquals(8, hunger);
-//	 }
-	
-	// @Test
-	// public void changesForWalk() {
-	// dog.walkdog();
-	// int hunger = dog.getHunger();
-	// int bathroom = dog.getBathroom();
-	// int thirst = dog.getThirst();
-	// int boredom = dog.getBoredom();
-	// int walk = dog.getWalkLevel();
-	// Assert.assertEquals(5, bathroom);
-	// Assert.assertEquals(3, walk);
-	// Assert.assertEquals(5, thirst);
-	// Assert.assertEquals(4, boredom);
-	// Assert.assertEquals(5, hunger);
-	// }
+
+	@Test
+	public void changesForTick() {
+		dog.tick();
+		int hunger = dog.getHunger();
+		int bathroom = dog.getBathroom();
+		int thirst = dog.getThirst();
+		int boredom = dog.getBoredom();
+		Assert.assertEquals(11, bathroom);
+		Assert.assertEquals(11, thirst);
+		Assert.assertEquals(5, boredom);
+		Assert.assertEquals(10, hunger);
+	}
+
+	@Test
+	public void changesForWalk() {
+		dog.walkdog();
+		int hunger = dog.getHunger();
+		int bathroom = dog.getBathroom();
+		int thirst = dog.getThirst();
+		int boredom = dog.getBoredom();
+		int walk = dog.getWalkLevel();
+		Assert.assertEquals(7, bathroom);
+		Assert.assertEquals(5, walk);
+		Assert.assertEquals(7, thirst);
+		Assert.assertEquals(6, boredom);
+		Assert.assertEquals(7, hunger);
+	}
+
+	@Test
+	public void cageCheck() {
+		int check = dog.getCageSoilLevel();
+		assertThat(check, is(7));
+	}
+
+	@Test
+	public void cleanCage() {
+		dog.cleanCage();
+		int check = dog.getCageSoilLevel();
+		assertThat(check, is(0));
+	}
 }

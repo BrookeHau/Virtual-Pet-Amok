@@ -9,10 +9,10 @@ public class VirtualShelter {
 	private Map<String, VirtualPet> pets = new HashMap<>();
 
 	public VirtualShelter() {
-		pets.put("Henry", new VirtualPet("Henry", "dog with an old soul, and a charmer", 5, 4, 7, 3));
-		pets.put("Woody", new VirtualPet("Woody", "energetic and playful dog", 2, 4, 4, 6));
-		pets.put("Kitty", new VirtualPet("Kitty", "cat that loves to play fetch", 3, 3, 5, 4));
-		pets.put("Leigh Ann", new VirtualPet("Leigh Ann", "teacup pig", 5, 4, 7, 3));
+		pets.put("Henry", new Dog("Henry", "dog with an old soul, and a charmer", 5, 4, 7, 3, 5, 6, 7, 8));
+		pets.put("Woody", new RobotDog("Woody", "energetic and playful robodog", 2, 4, 4));
+		pets.put("Kitty", new Cat("Kitty", "cat that loves to play fetch", 3, 3, 5, 4, 7, 5, 5));
+		pets.put("Leigh Ann", new RobotCat("Leigh Ann", "robot", 5, 4));
 	}
 
 	public void admitPet(VirtualPet pet) {

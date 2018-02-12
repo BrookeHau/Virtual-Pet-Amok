@@ -14,12 +14,12 @@ import java.util.Collection;
 
 public class VirtualShelterTest {
 
-	private VirtualPet testPet = new VirtualPet("Henry", "dog", 5, 5, 5, 5);
+	private VirtualPet testPet = new Dog("Henry", "dog", 5, 5, 5, 5, 5, 5, 5, 5);
 	private VirtualShelter shelterUnderTest = new VirtualShelter();
-	private VirtualPet anotherPet = new VirtualPet("Woody", "dog", 5, 5, 5, 5);
+	private VirtualPet anotherPet = new Cat("Woody", "dog", 5, 5, 5, 5, 5, 5, 5);
+	private VirtualPet anotherPet2 = new RobotDog("Woody", "robo", 5, 5, 5);
 
 	@Before
-	public void clearList() {
 		shelterUnderTest.clear();
 	}
 
